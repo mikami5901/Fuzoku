@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'top#index'
-  root to: redirect('/top/index')
+  #root to: redirect('/top/index')
   #root to: redirect('/girls')
   devise_for :kanrisyas
   get 'top/index'
