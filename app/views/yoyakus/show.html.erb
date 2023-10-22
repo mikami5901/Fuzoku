@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @yoyaku %>
+
+<div>
+  <%= link_to "Edit this yoyaku", edit_yoyaku_path(@yoyaku) %> |
+  <%= link_to "Back to yoyakus", yoyakus_path %>
+
+  <%= button_to "Destroy this yoyaku", @yoyaku, method: :delete %>
+</div>

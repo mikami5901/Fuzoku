@@ -1,0 +1,27 @@
+<%= form_with(model: ryokin) do |form| %>
+  <% if ryokin.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ryokin.errors.count, "error") %> prohibited this ryokin from being saved:</h2>
+
+      <ul>
+        <% ryokin.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :course, style: "display: block" %>
+    <%= form.number_field :course %>
+  </div>
+
+  <div>
+    <%= form.label :punn, style: "display: block" %>
+    <%= form.number_field :punn %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

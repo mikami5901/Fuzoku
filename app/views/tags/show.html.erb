@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tag %>
+
+<div>
+  <% link_to "Edit this tag", edit_tag_path(@tag) %> 
+  <%= link_to "一覧に戻る", tags_path %>
+
+  <%= button_to "削除", @tag, method: :delete %>
+</div>

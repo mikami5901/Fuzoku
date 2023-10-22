@@ -1,0 +1,23 @@
+<div id="<%= dom_id schedule %>">
+
+<p>
+    <strong>名前:</strong>
+    <%= schedule.girl.name %>
+  </p>
+
+  <p>
+    <strong>勤務日:</strong>
+    <%= schedule.work_day.strftime('%m月%d日') %>
+  </p>
+
+  <p>
+    <strong>開始時間:</strong>
+    <%= schedule.start_time.strftime('%H時%M分') %>
+  </p>
+
+  <p>
+    <strong>終了時間:</strong>
+    <%= schedule.finish_time.strftime('%H時%M分') %>
+  </p>
+
+</div>

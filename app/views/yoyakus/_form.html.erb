@@ -1,0 +1,32 @@
+<%= form_with(model: yoyaku) do |form| %>
+  <% if yoyaku.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(yoyaku.errors.count, "error") %> prohibited this yoyaku from being saved:</h2>
+
+      <ul>
+        <% yoyaku.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :girl_id, style: "display: block" %>
+    <%= form.collection_select(:girl_id, @girls, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :reserve_start, style: "display: block" %>
+    <%= form.datetime_select :reserve_start, default: Time.now, style: "display: none;" %>
+  </div>
+
+  <div>
+    <%= form.label :reserve_finish, style: "display: block" %>
+    <%= form.datetime_select :reserve_finish, default: Time.now, style: "display: none;" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

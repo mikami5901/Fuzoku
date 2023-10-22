@@ -1,0 +1,88 @@
+<%= javascript_include_tag 'system' %>
+<%= stylesheet_link_tag "sysyem", :media => "all" %>
+<%= stylesheet_link_tag "abcd", :media => "all" %>
+<div class="mx-3 my-4 main-container">システム料金</div>
+
+<script>
+  $(document).ready(function() {
+    $('.slider').slick({
+      autoplay: true, //自動再生
+      autoplaySpeed: 4000, //再生スピード
+    });
+  });
+</script>
+
+
+<div class="px-3 zenbu">
+ <div class="mt-3 d-flex flex-row wrap"> 
+   <div class="col-md-7 oya">
+     <div class="mannnaka">
+       <div class="tyuuou">
+         <div class="d-flex flex-row nyukai">
+           <div class="meimoku">新規入会金</div>
+           <div class="nedan">1,000yen</div>
+         </div>
+         <div class="setumei">(初回及び再発行のお客様のみ頂戴しております。)</div>
+        </div>
+        <div class="d-flex flex-row nyukai">
+          <div class="meimoku">パネル指名料</div>
+          <div class="nedan">無料</div>
+        </div>
+       <div class="d-flex flex-row nyukai">
+         <div class="meimoku">本指名料</div>
+          <div class="nedan">2,000yen</div>
+       </div>
+       <div class="setumei">(ご予約をされた場合とお気に入りの女の子で２回以上お遊びされる時に頂戴しております。)</div>
+       <div class="d-flex flex-row nyukai">
+          <div class="meimoku">延長料金（10分）</div>
+          <div class="nedan">3,000yen</div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-5 cosoya">
+     <div class="cosmoji">コスプレ&nbsp;&nbsp;ALL 1,000yen</div> 
+     
+     <div class="slider">
+<%= image_tag "2829.jpg" %>
+<%= image_tag "2830.jpg" %>
+<%= image_tag "2831.jpg" %>
+<%= image_tag "2832.jpg" %>
+<%= image_tag "2833.jpg" %>
+<%= image_tag "2835.jpg" %>
+<%= image_tag "2838.jpg" %>
+<%= image_tag "2841.jpg" %>
+<%= image_tag "2844.jpg" %>
+</div>
+
+  </div>
+</div>
+
+ <div class="pt-5 d-flex flex-row second-wrap">
+   <div class="col-md-7 kakuninn">
+     <div class="usuall"> &nbsp; &nbsp; &nbsp;通常料金/Usually Price</div>
+       <% @system.each do |system| %>
+         <div class="d-flex flex-row corsepunn">
+            <div class="scourse"><%= system.course %>min</div>
+            <div class="spunn"><%= system.punn.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>yen</div>
+          </div>
+       <% end %>
+   </div>
+
+    <div class="opwaku">
+     <% @option_lists.in_groups_of(2, false) do |option_lists_group|%>
+       <div class="d-flex flex-row">
+          <% option_lists_group.each do |option_list| %>
+            <div class="col ml-2 text-center d-flex flex-column">
+             <div class="ml-2 option_name"><%= option_list.option_name %></div>
+             <div>
+             <%= image_tag(option_list.option_picture_url(:thumb), class: 'opgazou',width:'100%') if option_list.option_picture.present? %>
+             </div>
+             <div class="option_price"><%= option_list.option_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>yen</div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+   </div>
+  </div>
+
+</div>

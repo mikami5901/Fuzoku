@@ -1,0 +1,2 @@
+module RyokinsHelper
+end

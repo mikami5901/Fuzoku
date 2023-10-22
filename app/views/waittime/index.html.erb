@@ -1,0 +1,95 @@
+<%= stylesheet_link_tag "plan", :media => "all" %>
+<%= stylesheet_link_tag "abcd", :media => "all" %>
+<div class="mx-3 my-4 main-container">待ち時間情報</div>
+
+
+<div id="pl">
+<% @plan.in_groups_of(4, false) do |today_group| %>
+
+  <div class="d-flex flex-row pl-2">
+  <% today_group.each do |t| %>
+
+    <div class="d-flex flex-column p-3 waku">
+          <div class="text-center syukkin">
+            <%  girl_id = t.girl.id %>
+            <% b = Schedule.where(girl_id: t.girl.id, work_day: Date.today .. Date.today+10).first %>
+            <% finish_time_hour = b.finish_time.hour %>
+            <% finish_time_min = b.finish_time.min %>
+            <% start_time_hour = b.start_time.hour %>
+            <% start_time_min = b.start_time.min %>
+            <% current_time = Time.now %>
+            <% current_hour = Time.now.hour %>
+            <% current_min = Time.now.min %>
+            <% today_yoyakus =  Booking.where("DATE(created_at) = ? AND girl_id = ? AND reserve_start <= ? AND reserve_finish >= ?", Date.today, girl_id, current_time, current_time) %>
+
+             <% if current_hour >= finish_time_hour && current_min >= finish_time_min %>
+               受付時間終了
+             <% elsif current_hour < start_time_hour %>
+               出勤待ち
+             <% elsif current_hour == start_time_hour && current_min <= start_time_min %>
+               出勤待ち
+             <% else %>
+              <% if today_yoyakus.present? && today_yoyakus.first.present? %>
+            
+               <% reserve_finish_hour = today_yoyakus.first.reserve_finish.hour %>
+               <% reserve_finish_min = today_yoyakus.first.reserve_finish.min %>
+               <% reserve_start_hour = today_yoyakus.first.reserve_start.hour %>
+               <% reserve_start_min = today_yoyakus.first.reserve_start.min %>
+               <% time_left_hour = reserve_finish_hour - current_hour %>
+               <% time_left_time = time_left_hour * 60 + reserve_finish_min - current_min %> 
+
+               <p>
+               <% if current_hour >= reserve_start_hour && current_min >= reserve_start_min && time_left_time > 0 %>
+                 残り時間<%= time_left_time %>分
+               <% else %>
+                 今すぐ遊べます
+               <% end %>
+               </p> 
+              <% else %>
+               <p>
+                今すぐ遊べます
+                </p>
+              <% end %>
+            <% end %>
+
+
+           <div class ="m-2 yotei">
+           <% a = Schedule.where(girl_id: t.girl.id, work_day: Date.today .. Date.today+10).order(work_day: :asc).first %>
+           <%= a.start_time.strftime('%H時%M分') %>~
+           <%= a.finish_time.strftime('%H時%M分') %>
+           </div>
+         </div>
+         <a href="/girls/<%= t.girl.id %>">
+
+         <div class="text-center">
+           <%= image_tag(t.girl.girl_picture_url(:thumb), width:'100%') %>
+         </div>
+
+         <div class="text-center">
+           <%= t.girl.name %> &nbsp;(<%= t.girl.age %>) 
+         </div>
+         <div class="text-center">
+           T<%= t.girl.height %>&nbsp;B<%= t.girl.bust %>(<%= t.girl.bust_cup %>)&nbsp;W<%= t.girl.waist %>&nbsp;H<%= t.girl.hip %>
+         </div>
+         <div class="tags">
+<div class= "row">
+  <div class= "col text-center p-1 m-1 bg-white tagb"><%= t.girl.tag_a %></div>
+  <div class= "col text-center p-1 m-1 bg-white tagb"><%= t.girl.tag_b %></div>
+</div>
+<div class= "row">
+   <div class= "col text-center p-1 m-1 bg-white tagb"><%= t.girl.tag_c %></div>
+   <div class= "col text-center p-1 m-1 bg-white tagb"><%= t.girl.tag_d %></div>
+  </div>
+</div>
+<div class="d-flex flex-row text-center mt-2 price">
+<div class="col label">特別指名料</div>
+<div class="col amount"><%= t.girl.nomination_fee.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>円</div>
+</div>
+
+     </div>
+     </a>
+     <% end %>
+ </div>
+ <% end %>
+</div>
+

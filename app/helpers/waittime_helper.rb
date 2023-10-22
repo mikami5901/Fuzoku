@@ -1,0 +1,2 @@
+module WaittimeHelper
+end

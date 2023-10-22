@@ -1,0 +1,45 @@
+<div id="<%= dom_id yoyaku %>">
+  <p>
+    <strong>Girl:</strong>
+    <%= yoyaku.girl_id %>
+  </p>
+  <p>
+  <strong>名前:</strong>
+  <%= yoyaku.girl.name %>
+</p>
+
+<p>
+  <strong>登録日:</strong>
+  <%= yoyaku.created_at %>
+</p>
+
+  <p>
+    <strong>Reserve start:</strong>
+    <%= yoyaku.reserve_start %>
+    <%= yoyaku.reserve_start.strftime('%H時%M分') %>
+  </p>
+
+  <p>
+    <strong>Reserve finish:</strong>
+    <%= yoyaku.reserve_finish.strftime('%H時%M分') %>
+  </p>
+
+  <% current_hour = Time.now.hour %>
+  <% current_min = Time.now.min %>
+  <% reserve_finish_hour = yoyaku.reserve_finish.hour %>
+  <% reserve_finish_min = yoyaku.reserve_finish.min %>
+  <% reserve_start_hour = yoyaku.reserve_start.hour %>
+  <% reserve_start_min = yoyaku.reserve_start.min %>
+  <% time_left_hour = reserve_finish_hour - current_hour%>
+  <% time_left_time = time_left_hour * 60 + reserve_finish_min - current_min %> 
+  
+  <p>
+  <strong>即ヒメ:</strong>
+  <% if current_hour >= reserve_start_hour && current_min >= reserve_start_min && time_left_time > 0 %>
+    残り時間<%= time_left_time %>分
+  <% else %>
+   今すぐ遊べます
+  <% end %>
+  </p>  
+
+</div>

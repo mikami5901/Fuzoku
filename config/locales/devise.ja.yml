@@ -1,0 +1,28 @@
+ja:
+  devise:
+    registrations:
+      signed_up: 'ユーザー登録が完了しました。'
+      signed_up_but_unconfirmed: 'ユーザー登録が完了しましたが、メール認証が必要です。'
+      signed_up_but_inactive: 'ユーザー登録が完了しましたが、アカウントはまだ有効化されていません。'
+      signed_up_after_approval: 'ユーザー登録が受け付けられました。管理者の承認後にアクセスできます。'
+    sessions:
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+    passwords:
+      send_instructions: 'パスワード再設定の手順をメールで送信しました。'
+      updated: 'パスワードが更新されました。'
+    confirmations:
+      send_instructions: '確認メールを送信しました。'
+      confirmed: 'メールアドレスが確認されました。'
+      resend_instructions: '確認メールの再送信手順をメールで送信しました。'
+    unlocks:
+      send_instructions: 'アカウントのロック解除手順をメールで送信しました。'
+      unlocked: 'アカウントがロック解除されました。'
+    omniauth_callbacks:
+      success: 'サービス名でログインしました。'
+      failure: 'サービス名でのログインに失敗しました。'
+
+  errors:
+    messages:
+      not_found: '見つかりませんでした。'
+      already_authenticated: '既にログインされています。'

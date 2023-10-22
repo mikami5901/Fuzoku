@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @data_page %>
+
+<div>
+  <%= link_to "Edit this data page", edit_data_page_path(@data_page) %> |
+  <%= link_to "Back to data pages", data_pages_path %>
+
+  <%= button_to "Destroy this data page", @data_page, method: :delete %>
+</div>

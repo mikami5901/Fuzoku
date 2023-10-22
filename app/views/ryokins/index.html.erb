@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ryokins</h1>
+
+<div id="ryokins">
+  <% @ryokins.each do |ryokin| %>
+    <%= render ryokin %>
+    <p>
+      <%= link_to "Show this ryokin", ryokin %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ryokin", new_ryokin_path %>

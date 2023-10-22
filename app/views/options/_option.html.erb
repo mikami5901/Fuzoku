@@ -1,0 +1,23 @@
+<div id="<%= dom_id option %>">
+  <p>
+    <strong>名前:</strong>
+    <%= option.girl.name %>
+  </p>
+
+  <p>
+    <strong>オプション名:</strong>
+    <%= option.o_name %>
+  </p>
+  <% op = OptionList.where(option_name:option.o_name).first %>
+  <p>
+    <% option.o_picture = op.option_picture %>
+    <% option.save %>
+  </p>
+
+  <p>
+    <strong>オプション価格:</strong>
+    <%= option.o_price = op.option_price %>
+    <% option.save %>
+  </p>
+
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<% style="color: green" %><%= notice %>
+<%= stylesheet_link_tag "abcd", :media => "all" %>
+
+<head>
+  <meta charset="UTF-8">
+  <%= javascript_include_tag "http://maps.google.com/maps/api/js?key=#{Rails.configuration.google_maps_api_key}&language=ja" %>
+  <style>
+    html { height: 100% }
+    body { height: 100% }
+    #map { height: 300px; width: 40% }
+  </style>
+
+</head>
+
+<body>
+
+<div class="mx-3 my-4 main-container">アクセス</div>
+    
+<div class="d-flex flex-row p-4">
+  <div class="d-flex flex-column">
+   <div class="jyuusyo">〒105-0011 東京都港区芝公園４丁目２−８</div>
+   <div class="jyuusyosetumei">東京タワーの最寄駅は、都営地下鉄大江戸線「赤羽橋駅」です。<br>赤羽橋駅の赤羽橋口出口から東京タワーまでは徒歩約5分でアクセスできます。</div>
+   <div class= "mt-5">  
+   <iframe width="500" height="300" src="https://www.youtube.com/embed/KVg11h9RM6g" title="【モンスト】獣神祭でまさかのあいつを引き当てる！【ヒカキンゲームズ】" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+   </div>
+   </div>
+  <div id="map" class="map"></div>
+</div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var MyLatLng = new google.maps.LatLng(35.6585805, 139.7454329);
+      var Options = {
+        zoom: 15,
+        center: MyLatLng,
+        mapTypeId: 'roadmap'
+      };
+      var map = new google.maps.Map(document.getElementById('map'), Options);
+
+      var marker = new google.maps.Marker({
+        position: MyLatLng,
+        map: map,
+        title: '東京タワー'
+      });
+
+      
+
+    });
+  </script>
+
+  </body>
+
+</html>

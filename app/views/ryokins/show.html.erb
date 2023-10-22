@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ryokin %>
+
+<div>
+  <%= link_to "Edit this ryokin", edit_ryokin_path(@ryokin) %> |
+  <%= link_to "Back to ryokins", ryokins_path %>
+
+  <%= button_to "Destroy this ryokin", @ryokin, method: :delete %>
+</div>

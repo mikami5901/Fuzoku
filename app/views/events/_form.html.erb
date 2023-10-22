@@ -1,0 +1,40 @@
+<%= form_with(model: event) do |form| %>
+  <% if event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+  <%= form.label :category_one %>
+  <div class="options">
+    <%= form.radio_button :category_one, "option1" %>
+    <%= form.label :category_one_option1, "設定なし" %>
+    <%= form.radio_button :category_one, "option2" %>
+    <%= form.label :category_one_option2, "朝割引" %>
+    <%= form.radio_button :category_one, "option3" %>
+    <%= form.label :category_one_option3, "月間イベント" %>
+  </div>
+
+  <%= form.label :category_two %>
+  <div class="options">
+    <%= form.radio_button :category_two, "option1" %>
+    <%= form.label :category_two_option1, "設定なし" %>
+    <%= form.radio_button :category_two, "option2" %>
+    <%= form.label :category_two_option2, "新人割引" %>
+    <%= form.radio_button :category_two, "option3" %>
+    <%= form.label :category_two_option3, "設定なし" %>
+  </div>
+</div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

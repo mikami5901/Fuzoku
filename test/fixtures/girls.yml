@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: 1
+  height: 1
+  bust: 1
+  bust_cup: MyString
+  waist: 1
+  hip: 1
+  girl_picture: MyString
+  message: MyString
+  tag_a: 1
+  tag_b: 1
+  tag_c: 1
+  tag_d: 1
+  nomination_fee: 1
+  start_date: 2023-05-05
+  experience: false
+  option_id: 1
+
+two:
+  name: MyString
+  age: 1
+  height: 1
+  bust: 1
+  bust_cup: MyString
+  waist: 1
+  hip: 1
+  girl_picture: MyString
+  message: MyString
+  tag_a: 1
+  tag_b: 1
+  tag_c: 1
+  tag_d: 1
+  nomination_fee: 1
+  start_date: 2023-05-05
+  experience: false
+  option_id: 1

@@ -1,0 +1,105 @@
+<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag "show", :media => "all" %>
+
+<div class="mx-3 my-4 main-container">プロフィール</div>
+<div class="px-4">
+  <div class="row page_wrap ">
+   <div class="col-md-6 blk01">
+      <div class="py-4">
+       <%= image_tag(@girl.girl_picture_url(:thumb), width:'100%') if @girl.girl_picture.present? %>
+      </div>
+
+      <div class="row tags">
+       <div class= "col text-center p-1 m-1 bg-white tagb"><%= @girl.tag_a %></div>
+       <div class= "col text-center p-1 m-1 bg-white tagb"><%= @girl.tag_b %></div>
+       <div class= "col text-center p-1 m-1 bg-white tagb"><%= @girl.tag_c %></div>
+       <div class= "col text-center p-1 m-1 bg-white tagb"><%= @girl.tag_d %></div>
+      </div>
+
+      <div class="row mt-2">
+       <div class="col-md-6 text-center">
+         <div class="d-flex flex-row price">
+           <div class="col label">特別指名料</div>
+           <div class="col amount"><%= @girl.nomination_fee.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>円</div>
+         </div>
+
+         <div class=" mt-2 px-2 pb-1 jikai-wrap">
+           <div>次回出勤予定日</div>
+              <div class ="yotei">
+                <% if Schedule.where(girl_id: @girl.id, work_day: Date.today .. Date.today+10).first.present? %>
+                 <% a = Schedule.where(girl_id: @girl.id, work_day: Date.today .. Date.today+10).first %>
+                 <%= a.work_day.strftime('%m月%d日') %>
+                 <%= a.start_time.strftime('%H時%M分') %>~
+                 <%= a.finish_time.strftime('%H時%M分') %>
+                 <% else %>
+                  未定
+                <% end %>
+              </div>
+            </div>
+          </div>
+         <div class="col-md-6 text-center meru"><span>&emsp;&emsp;出勤をメルマガに登録&emsp;&emsp;</span></div>
+    
+  
+         <div class="mt-2 px-3 kousin">
+           <pre><%= @girl.message %></pre>
+          </div>
+
+
+      <div class="px-3 ml-4 syukkinyotei">&emsp;&emsp;出勤予定&emsp;</div>
+        <div class="yoteibihyouji">
+          <% @girl.schedules.each do |schedule| %>
+           <% if (Date.today .. Date.today+10).cover?(schedule.work_day) %>
+             <div class="">
+               <div class="col-md-5">
+                 <div class="kuronuri my-1" >
+                   <%= schedule.work_day.strftime('%m月%d日') %>
+                   <%= schedule.start_time.strftime('%H時%M分') %>~
+                   <%= schedule.finish_time.strftime('%H時%M分') %>
+                 </div>
+               </div>
+              </div>
+           <% end %>    
+          <% end %>
+       </div>
+      </div>
+
+     <p>
+     <% @girl.options.in_groups_of(4, false) do |option_group| %>
+       <div class="row">
+         <% option_group.each do |o| %>
+           <div class="d-flex flex-column pl-3">
+             <div class="text-center mb-2 op_name"><%= o.o_name %></div>
+             <%= image_tag(o.o_picture_url(:thumb), width:'50%',class:"opic") %>
+             <div class="op_price"><%= o.o_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>円</div>
+           </div>
+         <% end %>
+        </div>
+     <% end %>
+     </p>
+    </div>
+    <div class="col-md-6 blk02">
+     <div class="d-flex flex-row marugazou">
+        <% if @girl.girl_picture.present? %>
+         <%= image_tag(@girl.girl_picture_url(:thumb), width: '20%', class: 'rounded-image') %>
+        <% end %>
+        <div class="mt-4 ml-2 d-flex flex-column mojino">
+         <div class=""><%= @girl.name %> &nbsp;(<%= @girl.age %>) </div>
+         <div class="">T<%= @girl.height %>&nbsp;B<%= @girl.bust %>(<%= @girl.bust_cup %>)&nbsp;W<%= @girl.waist %>&nbsp;H<%= @girl.hip %></div>
+        </div>
+        
+     </div>
+       
+<a class="twitter-timeline" data-width="500" data-height="700" data-theme="light" href="https://twitter.com/YOASOBI_staff?ref_src=twsrc%5Etfw">Tweets by YOASOBI_staff</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+    </div>
+ </div>
+</div>
+
+<%= render @girl %> 
+
+<div>
+  <%= link_to "Edit this girl", edit_girl_path(@girl) %> |
+  <%= link_to "Back to girls", girls_path %>
+
+  <%= button_to "Destroy this girl", @girl, method: :delete %>
+</div>

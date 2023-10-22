@@ -1,0 +1,2 @@
+module NewcomersHelper
+end

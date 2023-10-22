@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @option_list %>
+
+<div>
+  <%= link_to "Edit this option list", edit_option_list_path(@option_list) %> |
+  <%= link_to "Back to option lists", option_lists_path %>
+
+  <%= button_to "Destroy this option list", @option_list, method: :delete %>
+</div>

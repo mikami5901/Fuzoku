@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Yoyakus</h1>
+
+<div id="yoyakus">
+  <% @yoyakus.each do |yoyaku| %>
+    <%= render yoyaku %>
+    <p>
+      <%= link_to "Show this yoyaku", yoyaku %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New yoyaku", new_yoyaku_path %>

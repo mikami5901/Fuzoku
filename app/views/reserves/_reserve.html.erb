@@ -1,0 +1,46 @@
+<div id="<%= dom_id reserve %>">
+  <p>
+    <strong>Girl:</strong>
+    <%= reserve.girl_id %>
+  </p>
+  <p>
+    <strong>名前:</strong>
+    <%= reserve.girl.name %>
+  </p>
+
+  <p>
+    <strong>登録日:</strong>
+    <%= reserve.created_at %>
+  </p>
+
+  <p>
+    <strong>Reserve start:</strong>
+    <%= reserve.reserve_start.strftime('%H時%M分') %>
+  </p>
+
+  <p>
+    <strong>Reserve finish:</strong>
+    <%= reserve.reserve_finish.strftime('%H時%M分') %>
+  </p>
+
+  <% current_hour = Time.now.hour %>
+  <% current_min = Time.now.min %>
+  <% reserve_finish_hour = reserve.reserve_finish.hour %>
+  <% reserve_finish_min = reserve.reserve_finish.min %>
+  <% reserve_start_hour = reserve.reserve_start.hour %>
+  <% reserve_start_min = reserve.reserve_start.min %>
+  <% time_left_hour = reserve_finish_hour - current_hour%>
+  <% time_left_time = time_left_hour * 60 + reserve_finish_min - current_min %> 
+  
+  <p>
+  <strong>即ヒメ:</strong>
+  <% if current_hour >= reserve_start_hour && current_min >= reserve_start_min %>
+    残り時間<%= time_left_time %>分
+  <% else %>
+    今すぐ遊べます
+  <% end %>
+  </p>  
+  
+  
+
+</div>

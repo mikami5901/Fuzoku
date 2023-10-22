@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      schedule: "スケジュール"
+      girl: "女性"
+    attributes:
+      schedule:
+        work_day: "勤務日"
+        start_time: "開始時間"
+        finish_time: "終了時間"
+    errors:
+      messages:
+        blank: "を入力してください."

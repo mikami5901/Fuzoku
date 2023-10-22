@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag "abcd", :media => "all" %>
+<div class="main-container"><h1>Schedules</h1></div>
+
+<%= link_to "出勤を追加する", new_schedule_path %>
+
+<div id="schedules">
+  <% @schedules.each do |schedule| %>
+    <%= render schedule %>
+    <p>
+      <%= link_to "スケジュールの編集・削除", schedule %>
+    </p>
+  <% end %>
+</div>
+
+

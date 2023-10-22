@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tags</h1>
+
+<%= link_to "新規作成", new_tag_path %>
+
+<div id="tags">
+  <% @tags.each do |tag| %>
+    <%= render tag %>
+    <p>
+      <%= link_to "削除", tag %>
+    </p>
+  <% end %>
+</div>
+
+

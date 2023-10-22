@@ -1,0 +1,45 @@
+<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag "abcd", :media => "all" %>
+<div class="main-container"><h1>女の子編集及び削除</h1>
+
+<div id="girls">
+  <% @girls.in_groups_of(4, false) do |girl_group| %>
+    <div class="row">
+    
+   <% girl_group.each do |girl| %>
+    <div class="col-md-3 border ">
+    <div class="text-center">
+       <p>次回出勤予定日</p>
+        <% if Schedule.where(girl_id:girl.id, work_day: Date.today .. Date.today+10).first.present? %>
+          <% a = Schedule.where(girl_id:girl.id, work_day: Date.today .. Date.today+10).first %>
+          <%= a.work_day.strftime('%m月%d日') %>
+          <%= a.start_time.strftime('%H時%M分') %>~
+          <%= a.finish_time.strftime('%H時%M分') %>
+        <% else %>
+        未定
+        <% end %>
+     </div>
+     <a class="nav-link active" aria-current="page" href="/girls/<% girl.id %>/edit">編集</a>
+     
+     <%= link_to girl do %>
+     <%= image_tag(girl.girl_picture_url(:thumb), width:'100%') if girl.girl_picture.present? %>
+     
+     <div class="text-center">
+     <%= girl.name %> &nbsp;(<%= girl.age %>) 
+     </div>
+     <div class="text-center">
+     T<%= girl.height %>&nbsp;B<%= girl.bust %>(<%= girl.bust_cup %>)&nbsp;W<%= girl.waist %>&nbsp;H<%= girl.hip %>
+     </div>
+     <table class="table table-bordered border-primary table-sm text-center ">
+     <tr class= "table-danger"><td><%= girl.tag_a %></td><td><%= girl.tag_b %></td></tr>
+     <tr class= "table-danger"><td><%= girl.tag_c %></td><td><%= girl.tag_d %></td></tr></table>
+     <p class="text-center">特別指名料<%= girl.nomination_fee %>円</p>
+     
+    </div>
+    <% end %>  
+  <% end %>
+   </div>
+  <% end %>
+</div>
+</div>
+<%= paginate @girls %>

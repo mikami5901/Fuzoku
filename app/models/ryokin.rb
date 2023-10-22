@@ -1,0 +1,2 @@
+class Ryokin < ApplicationRecord
+end

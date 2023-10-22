@@ -1,0 +1,105 @@
+<%= stylesheet_link_tag "form", :media => "all" %>
+<%= form_with(model: girl) do |form| %>
+  <% if girl.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(girl.errors.count, "の項目で") %> 未入力があります。訂正してください。</h2>
+
+      <ul>
+        <% girl.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :age, style: "display: block" %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div>
+    <%= form.label :height, style: "display: block" %>
+    <%= form.number_field :height %>
+  </div>
+
+  <div>
+    <%= form.label :bust, style: "display: block" %>
+    <%= form.number_field :bust %>
+  </div>
+
+  <div>
+    <%= form.label :bust_cup, style: "display: block" %>
+    <%= form.text_field :bust_cup %>
+  </div>
+
+  <div>
+    <%= form.label :waist, style: "display: block" %>
+    <%= form.number_field :waist %>
+  </div>
+
+  <div>
+    <%= form.label :hip, style: "display: block" %>
+    <%= form.number_field :hip %>
+  </div>
+
+  <div>
+    <%= form.label :girl_picture, style: "display: block" %>
+    <%= form.file_field :girl_picture %>
+  </div>
+
+  <div class="">
+    <%= form.label :message, style: "display: block" %>
+    <%= form.text_area :message, rows: 5, style: 'resize: vertical; width: 400px;' %>
+
+
+  </div>
+
+  <div>
+  <%= form.label :tag_a, style: "display: block" %>
+    <%= form.collection_select(:tag_a, Tag.all, :tag_name, :tag_name) %>
+</div>
+
+<div>
+  <%= form.label :tag_b, style: "display: block" %>
+    <%= form.collection_select(:tag_b, Tag.all, :tag_name, :tag_name) %>
+</div>
+
+<div>
+  <%= form.label :tag_c, style: "display: block" %>
+    <%= form.collection_select(:tag_c, Tag.all, :tag_name, :tag_name) %>
+</div>
+
+<div>
+  <%= form.label :tag_d, style: "display: block" %>
+    <%= form.collection_select(:tag_d, Tag.all, :tag_name, :tag_name) %>
+</div>
+
+  <div>
+    <%= form.label :nomination_fee, style: "display: block" %>
+    <%= form.number_field :nomination_fee %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :experience, style: "display: block" %>
+    <%= form.check_box :experience %>
+  </div>
+
+  <div>
+    <%= form.label :option_id, style: "display: block" %>
+    <%= form.number_field :option_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

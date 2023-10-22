@@ -1,0 +1,17 @@
+<div id="<%= dom_id option_list %>">
+  <p>
+    <strong>Option name:</strong>
+    <%= option_list.option_name %>
+  </p>
+
+  <p>
+    <strong>Option picture:</strong>
+    <%= image_tag(option_list.option_picture_url(:thumb), width:'100%') if option_list.option_picture.present? %>
+  </p>
+
+  <p>
+    <strong>Option price:</strong>
+    <%= option_list.option_price %>
+  </p>
+
+</div>

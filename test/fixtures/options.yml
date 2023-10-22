@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  girl_id: 1
+  o_name: MyString
+  o_picture: MyString
+  o_price: 1
+
+two:
+  girl_id: 1
+  o_name: MyString
+  o_picture: MyString
+  o_price: 1
