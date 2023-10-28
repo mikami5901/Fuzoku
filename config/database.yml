@@ -25,3 +25,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
+  host: ec2-34-236-103-63.compute-1.amazonaws.com
+  database: d1447gam9splv3
+  username: xcpndchrhidnfl
+  password: a63d936f413164532ab98bdef55e49863a37de2317a71376248fcc939c4c9c0f
+
