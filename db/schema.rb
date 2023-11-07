@@ -142,12 +142,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_125814) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "yoyakus", force: :cascade do |t|
-    t.integer "girl_id"
-    t.time "reserve_start"
-    t.time "reserve_finish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
